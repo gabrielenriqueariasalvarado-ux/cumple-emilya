@@ -577,7 +577,6 @@
       gap: 10px;
     }
 
-    /* Classic 4-Way Cross D-Pad */
     .gb-cross-dpad {
       display: grid;
       grid-template-columns: repeat(3, 38px);
@@ -690,7 +689,7 @@
 
     #candle-flame {
       transform-origin: 136px 42px;
-      transition: opacity 0.35s ease, transform 0.08s linear;
+      transition: opacity 0.35s ease, transform 0.07s linear;
     }
 
     #candle-smoke {
@@ -772,19 +771,52 @@
       color: var(--text-main);
     }
 
-    /* Phase 2: Modo Doodler (Kawaii Drawing Canvas) */
+    /* Phase 2: Modo Doodler (Expanded Canvas) */
+    #screen-doodle {
+      justify-content: flex-start;
+    }
+
     .doodle-card {
       border-color: rgba(255, 143, 171, 0.55);
       box-shadow:
         0 0 26px rgba(255, 143, 171, 0.16),
         inset 0 0 22px rgba(255, 179, 138, 0.05);
-      padding: 13px 13px;
+      padding: 12px 12px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .doodle-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .doodle-top-row .pixel-tag {
+      margin-bottom: 0;
+    }
+
+    .doodle-title-compact {
+      margin: 0 0 4px;
+      font-family: var(--font-pixel);
+      font-size: clamp(12.5px, 3.8vw, 15.5px);
+      line-height: 1.4;
+      color: #ffffff;
+      text-shadow: 0 0 12px rgba(255, 143, 171, 0.45);
+    }
+
+    .doodle-title-compact span.accent {
+      color: var(--neon-gold);
     }
 
     .doodle-subtitle {
-      margin: 0 0 8px;
-      font-size: 12.5px;
-      line-height: 1.4;
+      margin: 0 0 7px;
+      font-size: 12px;
+      line-height: 1.35;
       color: #ffe8f1;
     }
 
@@ -798,20 +830,21 @@
       border-radius: 12px;
       padding: 6px 8px;
       margin-bottom: 8px;
+      flex-wrap: wrap;
     }
 
     .color-palette {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .color-swatch {
       appearance: none;
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      border: 2.5px solid #fff8fb;
+      border: 2px solid #fff8fb;
       cursor: pointer;
       padding: 0;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
@@ -820,13 +853,13 @@
 
     .color-swatch.active {
       transform: scale(1.16);
-      box-shadow: 0 0 0 2.5px var(--neon-gold), 0 3px 10px rgba(255, 212, 59, 0.5);
+      box-shadow: 0 0 0 2.5px var(--neon-gold), 0 3px 10px rgba(255, 212, 59, 0.55);
     }
 
     .tool-group {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
     }
 
     .tool-pill {
@@ -835,9 +868,9 @@
       background: rgba(15, 20, 38, 0.8);
       color: var(--text-main);
       border-radius: 9px;
-      height: 28px;
-      padding: 0 8px;
-      font-size: 11px;
+      height: 27px;
+      padding: 0 7px;
+      font-size: 10.5px;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
@@ -864,14 +897,16 @@
       background: currentColor;
     }
 
+    /* Large Comfortable Drawing Canvas */
     .doodle-canvas-frame {
       position: relative;
       width: 100%;
-      height: 186px;
+      flex: 1;
+      min-height: 240px;
       border-radius: 16px;
       border: 3px solid #2b2338;
       box-shadow:
-        0 0 0 2px rgba(255, 179, 138, 0.7),
+        0 0 0 2px rgba(255, 179, 138, 0.72),
         0 8px 20px rgba(0, 0, 0, 0.4);
       background: #ffffff;
       overflow: hidden;
@@ -893,9 +928,11 @@
       justify-content: center;
       pointer-events: none;
       color: #b4a7c4;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 600;
       transition: opacity 0.25s ease;
+      text-align: center;
+      padding: 0 16px;
     }
 
     .canvas-placeholder-hint.hidden {
@@ -910,22 +947,51 @@
       font-size: 11px;
       font-weight: 600;
       color: #ffd6e5;
-    }
-
-    .doodle-bubbles-tray {
-      display: flex;
-      flex-direction: column;
       gap: 6px;
-      min-height: 50px;
-      max-height: 104px;
-      overflow-y: auto;
-      padding-bottom: 3px;
-      margin-bottom: 8px;
-      scrollbar-width: none;
     }
 
-    .doodle-bubbles-tray::-webkit-scrollbar {
-      display: none;
+    .phrase-pips {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .phrase-pip {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 700;
+      cursor: default;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .phrase-pip.unlocked {
+      border-color: #ff8fab;
+      background: rgba(255, 143, 171, 0.26);
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .phrase-pip.current {
+      border-color: var(--neon-gold);
+      background: rgba(255, 212, 59, 0.25);
+      color: var(--neon-gold);
+      transform: scale(1.08);
+    }
+
+    .doodle-spotlight-box {
+      min-height: 48px;
+      margin-bottom: 8px;
+      flex-shrink: 0;
     }
 
     .doodle-bubble {
@@ -936,10 +1002,9 @@
       color: #2b2338;
       border: 2.5px solid #2b2338;
       border-radius: 13px;
-      padding: 6px 10px;
+      padding: 7px 11px;
       font-size: 12px;
       font-weight: 700;
-      flex-shrink: 0;
       box-shadow: 0 3px 0 #ff8fab;
       animation: bubblePop 0.32s cubic-bezier(0.22, 1.3, 0.36, 1);
     }
@@ -958,7 +1023,7 @@
     }
 
     @keyframes bubblePop {
-      0% { opacity: 0; transform: scale(0.84) translateY(8px); }
+      0% { opacity: 0; transform: scale(0.88) translateY(6px); }
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
@@ -975,6 +1040,7 @@
       color: #9aa7c7;
       background: rgba(255, 255, 255, 0.06);
       transition: all 0.25s ease;
+      flex-shrink: 0;
     }
 
     .doodle-continue-btn.ready {
@@ -1186,7 +1252,7 @@
       cursor: default;
     }
 
-    /* Final Screen: Holographic Trading Card + Full Uncropped Portrait */
+    /* ============ FINAL REWARD: TRUE SECRET-RARE HOLOGRAPHIC CARD ============ */
     #screen-reward {
       justify-content: flex-start;
       padding: 2px 2px 12px;
@@ -1203,48 +1269,93 @@
       width: 100%;
       border-radius: 20px;
       padding: 9px;
-      background: linear-gradient(135deg, #ffd43b 0%, #ff5ca8 34%, #00f0ff 68%, #9d6bff 100%);
+      background: linear-gradient(135deg, #ffd43b, #ff5ca8, #00f0ff, #7bf1a8, #9d6bff, #ffd43b);
+      background-size: 240% 240%;
+      animation: holoBorderFlow 6s ease infinite alternate;
       box-shadow:
-        0 18px 42px rgba(0, 0, 0, 0.65),
-        0 0 28px rgba(0, 240, 255, 0.25);
+        0 20px 44px rgba(0, 0, 0, 0.72),
+        0 0 32px rgba(0, 240, 255, 0.32),
+        0 0 18px rgba(255, 92, 168, 0.28);
       transform-style: preserve-3d;
       transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-      transition: transform 0.18s ease-out;
+      transition: transform 0.16s ease-out;
       overflow: hidden;
     }
 
+    @keyframes holoBorderFlow {
+      0% { background-position: 0% 20%; }
+      100% { background-position: 100% 80%; }
+    }
+
+    /* Layer 1 OVER card: Diagonal Prismatic Rainbow Sheen */
+    .holo-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      border-radius: 20px;
+      background: linear-gradient(
+        118deg,
+        transparent 14%,
+        rgba(255, 77, 166, 0.26) 30%,
+        rgba(0, 240, 255, 0.34) 44%,
+        rgba(255, 224, 102, 0.32) 55%,
+        rgba(157, 107, 255, 0.26) 68%,
+        transparent 85%
+      );
+      background-size: 260% 260%;
+      background-position: var(--holo-x, 50%) var(--holo-y, 50%);
+      mix-blend-mode: color-dodge;
+      pointer-events: none;
+      animation: holoRainbowSweep 4.6s ease-in-out infinite alternate;
+    }
+
+    /* Layer 2 OVER card: Secret-Rare Micro-Prism Texture + Starlight Glints */
     .holo-card::after {
       content: "";
       position: absolute;
       inset: 0;
+      z-index: 7;
       border-radius: 20px;
-      background: linear-gradient(
-        118deg,
-        transparent 18%,
-        rgba(255, 255, 255, 0.34) 36%,
-        rgba(0, 240, 255, 0.24) 46%,
-        rgba(255, 92, 168, 0.22) 56%,
-        transparent 74%
-      );
-      background-size: 220% 220%;
-      background-position: var(--holo-x, 50%) var(--holo-y, 50%);
+      background-image:
+        radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.35) 0%, transparent 18%),
+        radial-gradient(circle at 78% 68%, rgba(0, 240, 255, 0.26) 0%, transparent 22%),
+        repeating-linear-gradient(
+          130deg,
+          rgba(255, 255, 255, 0.07) 0px,
+          rgba(255, 255, 255, 0.07) 1px,
+          transparent 1px,
+          transparent 6px
+        );
+      background-size: 160% 160%;
+      background-position: var(--holo-x, 30%) var(--holo-y, 30%);
       mix-blend-mode: screen;
+      opacity: 0.72;
       pointer-events: none;
-      animation: holoShimmer 5s ease-in-out infinite alternate;
+      animation: holoPrismSparkle 5.2s ease-in-out infinite alternate;
     }
 
-    @keyframes holoShimmer {
-      0% { opacity: 0.42; background-position: 15% 20%; }
-      100% { opacity: 0.82; background-position: 85% 80%; }
+    @keyframes holoRainbowSweep {
+      0% { opacity: 0.55; background-position: 10% 15%; }
+      50% { opacity: 0.95; }
+      100% { opacity: 0.65; background-position: 90% 85%; }
+    }
+
+    @keyframes holoPrismSparkle {
+      0% { opacity: 0.48; background-position: 20% 80%; }
+      100% { opacity: 0.85; background-position: 80% 20%; }
     }
 
     .holo-card-inner {
       position: relative;
       z-index: 2;
-      background: linear-gradient(170deg, #10162d 0%, #090d1c 100%);
+      background:
+        radial-gradient(circle at 85% 15%, rgba(0, 240, 255, 0.14), transparent 45%),
+        radial-gradient(circle at 15% 85%, rgba(255, 92, 168, 0.14), transparent 45%),
+        linear-gradient(170deg, #131b38 0%, #090d1e 100%);
       border-radius: 14px;
       padding: 11px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.24);
     }
 
     .tcg-header {
@@ -1265,6 +1376,7 @@
       color: var(--neon-gold);
       letter-spacing: 0.4px;
       margin-bottom: 4px;
+      text-shadow: 0 0 8px rgba(255, 212, 59, 0.45);
     }
 
     .tcg-name {
@@ -1281,23 +1393,44 @@
       font-size: 10px;
       padding: 6px 9px;
       border-radius: 9px;
-      background: rgba(0, 240, 255, 0.16);
+      background: rgba(0, 240, 255, 0.18);
       border: 1.5px solid var(--neon-cyan);
       color: var(--neon-cyan);
       white-space: nowrap;
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
     }
 
-    /* Full Uncropped 512:406 Pixel-Art Portrait Frame */
+    /* Full Uncropped 512:406 Pixel-Art Portrait Frame + Holo Window Glint */
     .tcg-art-window {
       position: relative;
       width: 100%;
       aspect-ratio: 512 / 406;
       border-radius: 12px;
-      border: 2px solid rgba(255, 212, 59, 0.72);
+      border: 2px solid rgba(255, 212, 59, 0.8);
       background: #141936;
       overflow: hidden;
       margin-bottom: 8px;
-      box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.45);
+      box-shadow:
+        inset 0 0 18px rgba(0, 0, 0, 0.45),
+        0 0 16px rgba(255, 212, 59, 0.22);
+    }
+
+    .tcg-art-window::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: linear-gradient(
+        130deg,
+        transparent 25%,
+        rgba(255, 255, 255, 0.22) 45%,
+        rgba(0, 240, 255, 0.16) 52%,
+        transparent 68%
+      );
+      background-size: 230% 230%;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: holoRainbowSweep 4s ease-in-out infinite alternate;
     }
 
     .tcg-portrait-img {
@@ -1310,15 +1443,16 @@
 
     .tcg-art-stamp {
       position: absolute;
+      z-index: 4;
       bottom: 6px;
       right: 8px;
       font-family: var(--font-pixel);
       font-size: 7.5px;
       padding: 4px 7px;
       border-radius: 6px;
-      background: rgba(8, 10, 18, 0.84);
+      background: rgba(8, 10, 18, 0.86);
       color: var(--neon-gold);
-      border: 1px solid rgba(255, 212, 59, 0.5);
+      border: 1px solid rgba(255, 212, 59, 0.55);
     }
 
     .stats-grid {
@@ -1329,8 +1463,8 @@
     }
 
     .stat-chip {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 9px;
       padding: 6px 5px;
       text-align: center;
@@ -1351,8 +1485,8 @@
     }
 
     .tcg-message-box {
-      background: rgba(7, 10, 22, 0.78);
-      border: 1px solid rgba(0, 240, 255, 0.26);
+      background: rgba(7, 10, 22, 0.8);
+      border: 1px solid rgba(0, 240, 255, 0.28);
       border-radius: 11px;
       padding: 9px 11px;
       font-size: 12px;
@@ -1366,8 +1500,8 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255, 143, 171, 0.1);
-      border: 1px dashed rgba(255, 179, 138, 0.55);
+      background: rgba(255, 143, 171, 0.12);
+      border: 1px dashed rgba(255, 179, 138, 0.62);
       border-radius: 11px;
       padding: 6px 9px;
     }
@@ -1378,7 +1512,7 @@
 
     .doodle-sticker-thumb {
       width: 78px;
-      height: 48px;
+      height: 52px;
       object-fit: contain;
       background: #ffffff;
       border: 2px solid #2b2338;
@@ -1583,9 +1717,8 @@
     }
 
     @media (max-height: 670px) {
-      .hud-card { padding: 12px 12px; }
-      .doodle-canvas-frame { height: 145px; }
-      .doodle-bubbles-tray { max-height: 62px; }
+      .hud-card { padding: 11px 11px; }
+      .doodle-canvas-frame { min-height: 190px; }
       .tcg-message-box { font-size: 11.5px; }
       .chat-messages { max-height: 52px; }
     }
@@ -1797,7 +1930,7 @@
               <div id="blow-meter-fill" class="meter-fill"></div>
             </div>
             <p id="mic-status-text" class="mic-status-text">
-              Acerca el teléfono y sopla fuerte hacia el micrófono...
+              Calibrando micrófono...
             </p>
           </div>
 
@@ -1807,23 +1940,27 @@
         </div>
       </section>
 
-      <!-- SCREEN 2: Modo Doodler (Kawaii Drawing Canvas) -->
+      <!-- SCREEN 2: Modo Doodler (Big Kawaii Sketchpad) -->
       <section id="screen-doodle" class="screen" aria-labelledby="doodle-title">
         <div class="hud-card doodle-card">
-          <span class="pixel-tag">ZONA 2 / 3 • MODO DOODLER</span>
-          <h2 id="doodle-title" class="hero-title">
+          <div class="doodle-top-row">
+            <span class="pixel-tag">ZONA 2 / 3 • MODO DOODLER</span>
+          </div>
+          <h2 id="doodle-title" class="doodle-title-compact">
             Dibuja tu <span class="accent">Magia</span> 🎨
           </h2>
           <p class="doodle-subtitle">
-            Sabemos que la mejor artista hoy cumple años... ¡Cada dibujito que hagas desbloquea un mensaje!
+            ¡Haz al menos 3 dibujitos! Cada uno desbloquea un mensaje especial.
           </p>
 
           <div class="doodle-toolbar" role="toolbar" aria-label="Herramientas de dibujo">
             <div class="color-palette">
               <button class="color-swatch active" type="button" data-color="#ff8fab" style="background:#ff8fab;" aria-label="Color rosa pastel"></button>
               <button class="color-swatch" type="button" data-color="#ffb38a" style="background:#ffb38a;" aria-label="Color durazno"></button>
+              <button class="color-swatch" type="button" data-color="#ffe066" style="background:#ffe066;" aria-label="Color amarillo"></button>
               <button class="color-swatch" type="button" data-color="#7bdff2" style="background:#7bdff2;" aria-label="Color azul cielo"></button>
               <button class="color-swatch" type="button" data-color="#80ed99" style="background:#80ed99;" aria-label="Color verde menta"></button>
+              <button class="color-swatch" type="button" data-color="#c8a2ff" style="background:#c8a2ff;" aria-label="Color lavanda"></button>
               <button class="color-swatch" type="button" data-color="#231f2e" style="background:#231f2e;" aria-label="Color negro para delinear"></button>
             </div>
             <div class="tool-group">
@@ -1832,7 +1969,7 @@
                 <span>Fino</span>
               </button>
               <button id="brush-thick-btn" class="tool-pill" type="button" data-size="11" aria-label="Pincel grueso">
-                <span class="brush-dot" style="width:10px;height:10px;"></span>
+                <span class="brush-dot" style="width:9px;height:9px;"></span>
                 <span>Grueso</span>
               </button>
               <button id="clear-doodle-btn" class="tool-pill clear-btn" type="button" title="Borrar lienzo" aria-label="Borrar lienzo">
@@ -1844,16 +1981,16 @@
           <div class="doodle-canvas-frame">
             <canvas id="doodle-canvas" aria-label="Lienzo de dibujo táctil"></canvas>
             <div id="canvas-placeholder-hint" class="canvas-placeholder-hint">
-              ✨ Haz un dibujito y levanta el dedo...
+              ✨ Dibuja aquí libremente y levanta el dedo...
             </div>
           </div>
 
           <div class="doodle-progress-row">
-            <span>💬 Mensajes desbloqueados</span>
-            <span id="doodle-unlock-count">0 / 6 (mín. 3)</span>
+            <span id="doodle-unlock-count">💬 Mensajes: 0 / 6 (mín. 3)</span>
+            <div id="phrase-pips" class="phrase-pips" aria-label="Frases desbloqueadas"></div>
           </div>
 
-          <div id="doodle-bubbles-tray" class="doodle-bubbles-tray" aria-live="polite">
+          <div id="doodle-spotlight-box" class="doodle-spotlight-box" aria-live="polite">
             <div class="doodle-bubble-empty">
               Cada dibujito nuevo desbloqueará un mensaje kawaii... 🍑💖
             </div>
@@ -2092,7 +2229,7 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         gbY: 8,
         gbRenderX: 2,
         gbRenderY: 8,
-        gbDir: "up", // "up" | "down" | "left" | "right"
+        gbDir: "up",
         eeveeX: 2,
         eeveeY: 9,
         eeveeRenderX: 2,
@@ -2116,6 +2253,7 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         doodleLastPt: null,
         doodleStrokeLen: 0,
         doodleUnlockedCount: 0,
+        doodleActivePhraseIdx: -1,
         doodleHasInk: false,
         doodleDataUrl: null,
         // Camera & celebration state
@@ -2167,7 +2305,8 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         brushThickBtn: document.getElementById("brush-thick-btn"),
         clearDoodleBtn: document.getElementById("clear-doodle-btn"),
         doodleUnlockCount: document.getElementById("doodle-unlock-count"),
-        doodleBubblesTray: document.getElementById("doodle-bubbles-tray"),
+        phrasePips: document.getElementById("phrase-pips"),
+        doodleSpotlightBox: document.getElementById("doodle-spotlight-box"),
         doodleContinueBtn: document.getElementById("doodle-continue-btn"),
         // Camera elements
         arCameraLayer: document.getElementById("ar-camera-layer"),
@@ -2391,10 +2530,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           { badge: "MOD", user: "Charmander99", color: "#ff924c", text: "¡Prepara aire y apaga esa vela para subir al 27! 🕯️💨" },
           { badge: "SUB", user: "Sylveon_Mod", color: "#ff7eb6", text: "Nivel 27 cargando en 3, 2, 1... 📈✨" }
         ],
-        doodle: [
-          { badge: "MOD", user: "Sylveon_Mod", color: "#ff7eb6", text: "¡MODO ARTISTA ACTIVADO!! Dibuja algo kawaii 🎨🍑" },
-          { badge: "VIP", user: "Eevee_Shiny", color: "#ffd43b", text: "Cada dibujito que hagas desbloquea un nuevo mensaje ✨" }
-        ],
         camera: [
           { badge: "MOD", user: "Oak_Prof", color: "#ffd43b", text: "¡ATENCIÓN! Un Eevee Fiesta Shiny acaba de aparecer 👀✨" },
           { badge: "VIP", user: "Sylveon_Mod", color: "#ff7eb6", text: "¡Lánzale la Pokébola para revelar tu carta!! 🔴⚪" }
@@ -2427,7 +2562,8 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
 
       function startChatLoop(phase) {
         clearInterval(state.chatTimerId);
-        if (phase === "reward") {
+        // Hide bottom chat on doodle (maximum canvas space!) and reward (card focus)
+        if (phase === "reward" || phase === "doodle") {
           el.chatPanel.classList.add("compact");
           return;
         }
@@ -2541,7 +2677,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
 
       function drawTopDownGrassTile(ctx, sx, sy, S, tx, ty) {
         pxRect(ctx, sx, sy, S, S, "#40b672");
-        // Retro pixel grass tuft accents (like Emerald/FireRed)
         if ((tx + ty) % 2 === 0) {
           pxRect(ctx, sx + 4, sy + 6, 2, 3, "#2b8b53");
           pxRect(ctx, sx + 7, sy + 5, 2, 4, "#2b8b53");
@@ -2554,31 +2689,19 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
 
       function drawTopDownPathTile(ctx, sx, sy, S, tx, ty) {
         pxRect(ctx, sx, sy, S, S, "#ebd48c");
-        // Soft pixel edge shading against grass
-        if (getTile(tx, ty - 1) !== "P" && getTile(tx, ty - 1) !== "B" && getTile(tx, ty - 1) !== "A" && getTile(tx, ty - 1) !== "C" && getTile(tx, ty - 1) !== "Z") {
-          pxRect(ctx, sx, sy, S, 2, "#c6a662");
-        }
-        if (getTile(tx, ty + 1) !== "P" && getTile(tx, ty + 1) !== "B" && getTile(tx, ty + 1) !== "A" && getTile(tx, ty + 1) !== "C" && getTile(tx, ty + 1) !== "Z") {
-          pxRect(ctx, sx, sy + S - 2, S, 2, "#c6a662");
-        }
-        if (getTile(tx - 1, ty) !== "P" && getTile(tx - 1, ty) !== "B" && getTile(tx - 1, ty) !== "A" && getTile(tx - 1, ty) !== "C" && getTile(tx - 1, ty) !== "Z") {
-          pxRect(ctx, sx, sy, 2, S, "#c6a662");
-        }
-        if (getTile(tx + 1, ty) !== "P" && getTile(tx + 1, ty) !== "B" && getTile(tx + 1, ty) !== "A" && getTile(tx + 1, ty) !== "C" && getTile(tx + 1, ty) !== "Z") {
-          pxRect(ctx, sx + S - 2, sy, 2, S, "#c6a662");
-        }
-        // Tiny sandy pebbles
+        const isPath = (x, y) => ["P", "B", "A", "C", "Z"].includes(getTile(x, y));
+        if (!isPath(tx, ty - 1)) pxRect(ctx, sx, sy, S, 2, "#c6a662");
+        if (!isPath(tx, ty + 1)) pxRect(ctx, sx, sy + S - 2, S, 2, "#c6a662");
+        if (!isPath(tx - 1, ty)) pxRect(ctx, sx, sy, 2, S, "#c6a662");
+        if (!isPath(tx + 1, ty)) pxRect(ctx, sx + S - 2, sy, 2, S, "#c6a662");
         pxRect(ctx, sx + 6 + ((tx * 3) % 8), sy + 8, 2, 2, "#d1b36b");
         pxRect(ctx, sx + 14, sy + 17, 2, 2, "#f7e7b4");
       }
 
       function drawTopDownTree(ctx, sx, sy, S) {
         drawTopDownGrassTile(ctx, sx, sy, S, 0, 0);
-        // Dark drop shadow
         pxRect(ctx, sx + 3, sy + 18, 18, 5, "rgba(0,0,0,0.22)");
-        // Trunk
         pxRect(ctx, sx + 9, sy + 16, 6, 6, "#694225");
-        // Layered GBA pixel pine crown
         pxRect(ctx, sx + 2, sy + 8, 20, 10, "#1c6137");
         pxRect(ctx, sx + 4, sy + 3, 16, 8, "#29834b");
         pxRect(ctx, sx + 6, sy + 1, 12, 5, "#42a866");
@@ -2587,12 +2710,10 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
 
       function drawTopDownWater(ctx, sx, sy, S, tx, ty, animFrame) {
         pxRect(ctx, sx, sy, S, S, "#4aa3ff");
-        // Shoreline border where touching non-water
         if (getTile(tx, ty - 1) !== "W") pxRect(ctx, sx, sy, S, 3, "#275d99");
         if (getTile(tx, ty + 1) !== "W") pxRect(ctx, sx, sy + S - 2, S, 2, "#3275bf");
         if (getTile(tx - 1, ty) !== "W") pxRect(ctx, sx, sy, 2, S, "#275d99");
         if (getTile(tx + 1, ty) !== "W") pxRect(ctx, sx + S - 2, sy, 2, S, "#275d99");
-        // Animated shimmering ripples
         const waveShift = (animFrame + tx + ty) % 2 === 0 ? 0 : 4;
         pxRect(ctx, sx + 4 + waveShift, sy + 8, 6, 2, "#a3dcff");
         pxRect(ctx, sx + 10 - waveShift, sy + 17, 6, 2, "#a3dcff");
@@ -2600,11 +2721,9 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
 
       function drawTopDownTrainer(ctx, px, py, dir, stepFrame, isGabo) {
         const stride = stepFrame % 2 === 0 ? 0 : 1;
-        // Drop shadow
         pxRect(ctx, px + 4, py + 20, 16, 4, "rgba(0,0,0,0.28)");
 
         if (isGabo) {
-          // Gabo's pixel NPC (dark hair + red/blue trainer cap + dark hoodie)
           pxRect(ctx, px + 5, py + 1, 14, 6, "#ff3b6b");
           pxRect(ctx, px + 7, py + 2, 10, 2, "#ffffff");
           pxRect(ctx, px + 6, py + 7, 12, 7, "#f2c19c");
@@ -2616,7 +2735,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           return;
         }
 
-        // Top-down Emilya (brown hair w/ blonde highlights, glasses, cream hoodie)
         if (dir === "up") {
           pxRect(ctx, px + 5, py + 1, 14, 13, "#5c3a21");
           pxRect(ctx, px + 6, py + 3, 3, 10, "#f4d06f");
@@ -2625,19 +2743,15 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           pxRect(ctx, px + 4, py + 1, 16, 11, "#5c3a21");
           pxRect(ctx, px + 5, py + 3, 3, 9, "#f4d06f");
           pxRect(ctx, px + 16, py + 3, 3, 9, "#f4d06f");
-          // Face
           const fx = dir === "left" ? px + 5 : (dir === "right" ? px + 8 : px + 6);
           pxRect(ctx, fx, py + 6, 11, 8, "#f6c8a8");
-          // Glasses & eyes
           pxRect(ctx, fx + 1, py + 8, 4, 3, "#231f2e");
           pxRect(ctx, fx + 2, py + 9, 2, 1, "#d8f3ff");
           pxRect(ctx, fx + 6, py + 8, 4, 3, "#231f2e");
           pxRect(ctx, fx + 7, py + 9, 2, 1, "#d8f3ff");
         }
-        // Cream Hoodie torso
         pxRect(ctx, px + 6, py + 14, 12, 6, "#f7eed7");
         pxRect(ctx, px + 11, py + 14, 2, 6, "#231f2e");
-        // Animated walking feet
         pxRect(ctx, px + 7, py + 20 - stride, 4, 3, "#394867");
         pxRect(ctx, px + 13, py + 20 - (1 - stride), 4, 3, "#394867");
       }
@@ -2645,22 +2759,18 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
       function drawTopDownEevee(ctx, ex, ey, dir, stepFrame) {
         const bounce = stepFrame % 2 === 0 ? 0 : 1;
         pxRect(ctx, ex + 5, ey + 19, 14, 3, "rgba(0,0,0,0.22)");
-        // Tail
         if (dir !== "down") {
           pxRect(ctx, ex + (dir === "left" ? 16 : 3), ey + 12, 5, 5, "#c68642");
           pxRect(ctx, ex + (dir === "left" ? 18 : 3), ey + 11, 3, 2, "#fff1d0");
         }
-        // Ears
         pxRect(ctx, ex + 5, ey + 2 - bounce, 3, 6, "#c68642");
         pxRect(ctx, ex + 16, ey + 2 - bounce, 3, 6, "#c68642");
-        // Head & fluffy ruff
         pxRect(ctx, ex + 6, ey + 6 - bounce, 12, 9, "#c68642");
         pxRect(ctx, ex + 6, ey + 13 - bounce, 12, 4, "#fff1d0");
         if (dir !== "up") {
           pxRect(ctx, ex + 8, ey + 9 - bounce, 2, 3, "#111827");
           pxRect(ctx, ex + 14, ey + 9 - bounce, 2, 3, "#111827");
         }
-        // Paws
         pxRect(ctx, ex + 7, ey + 17, 3, 3, "#8c583a");
         pxRect(ctx, ex + 14, ey + 17, 3, 3, "#8c583a");
       }
@@ -2671,11 +2781,10 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         }
         const canvas = el.gbMapCanvas;
         const ctx = canvas.getContext("2d");
-        const W = canvas.width;   // 320
-        const H = canvas.height;  // 200
-        const S = 24;             // 24x24 GBA-style tiles (~13.3 x 8.3 visible tiles)
+        const W = canvas.width;
+        const H = canvas.height;
+        const S = 24;
 
-        // Smooth pixel camera tracking Emilya
         state.gbRenderX += (state.gbX - state.gbRenderX) * 0.28;
         state.gbRenderY += (state.gbY - state.gbRenderY) * 0.28;
         state.eeveeRenderX += (state.eeveeX - state.eeveeRenderX) * 0.25;
@@ -2691,7 +2800,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
 
         ctx.clearRect(0, 0, W, H);
 
-        // 1) Draw Base Terrain & Tiles
         for (let ty = 0; ty < MAP_H; ty++) {
           for (let tx = 0; tx < MAP_W; tx++) {
             const sx = Math.round(tx * S - camX);
@@ -2705,7 +2813,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
               drawTopDownWater(ctx, sx, sy, S, tx, ty, animFrame);
             } else if (t === "B") {
               drawTopDownWater(ctx, sx, sy, S, tx, ty, animFrame);
-              // Wooden bridge planks spanning horizontally
               pxRect(ctx, sx, sy + 2, S, S - 4, "#a66e38");
               pxRect(ctx, sx, sy + 2, S, 2, "#6e441d");
               pxRect(ctx, sx, sy + S - 4, S, 2, "#6e441d");
@@ -2715,7 +2822,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
             } else if (t === "P" || t === "A" || t === "C") {
               drawTopDownPathTile(ctx, sx, sy, S, tx, ty);
               if (t === "A" || t === "C") {
-                // Cute doormat in front of building
                 pxRect(ctx, sx + 5, sy + 2, 14, 8, "#ff5ca8");
                 pxRect(ctx, sx + 7, sy + 4, 10, 4, "#ffd43b");
               }
@@ -2727,7 +2833,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
               pxRect(ctx, sx + 14 - fShift, sy + 15, 5, 5, "#ff8fab");
               pxRect(ctx, sx + 16 - fShift, sy + 17, 2, 2, "#fff59d");
             } else if (t === "Z") {
-              // Zone 3: Glowing Shiny Grass Patch
               drawTopDownGrassTile(ctx, sx, sy, S, tx, ty);
               pxRect(ctx, sx + 2, sy + 4, 20, 16, "#269653");
               pxRect(ctx, sx + 4, sy + 2, 4, 6, "#66e393");
@@ -2750,17 +2855,15 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           }
         }
 
-        // 2) Draw Buildings (3x2 tiles each, facing South)
         // Building 1: Pastelería at cols 4..6, rows 1..2
         const b1x = Math.round(4 * S - camX);
         const b1y = Math.round(1 * S - camY);
         pxRect(ctx, b1x + 2, b1y + 4, S * 3 - 4, S * 2 - 4, "#fff2f6");
-        pxRect(ctx, b1x, b1y + 2, S * 3, 20, "#ff4d88"); // Pink roof
+        pxRect(ctx, b1x, b1y + 2, S * 3, 20, "#ff4d88");
         pxRect(ctx, b1x, b1y + 20, S * 3, 4, "#ffd43b");
-        pxRect(ctx, b1x + 8, b1y + 28, 14, 12, "#7bdff2"); // Window
+        pxRect(ctx, b1x + 8, b1y + 28, 14, 12, "#7bdff2");
         pxRect(ctx, b1x + 50, b1y + 28, 14, 12, "#7bdff2");
-        pxRect(ctx, b1x + S + 5, b1y + 30, 14, 18, "#6e441d"); // Door above (5,3)
-        // Cake pixel emblem on roof
+        pxRect(ctx, b1x + S + 5, b1y + 30, 14, 18, "#6e441d");
         pxRect(ctx, b1x + 30, b1y + 7, 12, 9, "#ffffff");
         pxRect(ctx, b1x + 35, b1y + 3, 2, 4, "#ffd43b");
 
@@ -2768,25 +2871,25 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         const b2x = Math.round(9 * S - camX);
         const b2y = Math.round(6 * S - camY);
         pxRect(ctx, b2x + 2, b2y + 4, S * 3 - 4, S * 2 - 4, "#f0fbff");
-        pxRect(ctx, b2x, b2y + 2, S * 3, 20, "#38bdf8"); // Sky-blue roof
+        pxRect(ctx, b2x, b2y + 2, S * 3, 20, "#38bdf8");
         pxRect(ctx, b2x, b2y + 20, S * 3, 4, "#ff8fab");
-        pxRect(ctx, b2x + 8, b2y + 28, 14, 12, "#ffd43b"); // Art display window
+        pxRect(ctx, b2x + 8, b2y + 28, 14, 12, "#ffd43b");
         pxRect(ctx, b2x + 50, b2y + 28, 14, 12, "#ff8fab");
-        pxRect(ctx, b2x + S + 5, b2y + 30, 14, 18, "#6e441d"); // Door above (10,8)
+        pxRect(ctx, b2x + S + 5, b2y + 30, 14, 18, "#6e441d");
 
-        // 3) Draw Gabo NPC near Zone 3 at (14, 2)
+        // Gabo NPC at (14, 2)
         const gx = Math.round(14 * S - camX);
         const gy = Math.round(2 * S - camY);
         drawTopDownTrainer(ctx, gx, gy, "down", 0, true);
 
-        // 4) Draw Wild Eevee Fiesta waiting at Zone 3 (13, 3) if not cleared yet
+        // Wild Eevee Fiesta waiting at Zone 3 (13, 3)
         if (state.gbZoneCleared < 3) {
           const zx = Math.round(13 * S - camX);
           const zy = Math.round(3 * S - camY + bob);
           drawTopDownEevee(ctx, zx, zy, "left", animFrame);
         }
 
-        // 5) Draw Floating Quest Markers (! or ✓) on the 3 checkpoints
+        // Quest Markers (! or ✓)
         MAP_CHECKPOINTS.forEach((cp) => {
           const mx = Math.round(cp.x * S - camX + 5);
           const my = Math.round(cp.y * S - camY - 18 + bob);
@@ -2804,7 +2907,7 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           }
         });
 
-        // 6) Draw Eevee Follower & Emilya Trainer (depth-sorted by Y)
+        // Eevee & Emilya depth-sorted
         const ex = Math.round(state.eeveeRenderX * S - camX);
         const ey = Math.round(state.eeveeRenderY * S - camY);
         const px = Math.round(state.gbRenderX * S - camX);
@@ -2818,7 +2921,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           drawTopDownEevee(ctx, ex, ey, state.eeveeDir, state.gbStepFrame);
         }
 
-        // 7) Classic Pokémon "!" Exclamation Bubble when triggering checkpoint
         if (state.gbAlertBubble) {
           pxRect(ctx, px + 5, py - 18, 14, 15, "#ffffff");
           pxRect(ctx, px + 6, py - 17, 12, 13, "#231f2e");
@@ -2879,7 +2981,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           return;
         }
 
-        // Move Eevee to Emilya's previous spot
         state.eeveeX = state.gbX;
         state.eeveeY = state.gbY;
         state.eeveeDir = dir;
@@ -2934,7 +3035,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
             startRewardPhase();
             return;
           }
-          // Check if facing signpost or Gabo NPC
           const deltas = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
           const [dx, dy] = deltas[state.gbDir];
           const frontTile = getTile(state.gbX + dx, state.gbY + dy);
@@ -2965,7 +3065,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
             : "¡Aventura completa! Pulsa A para ver tu carta.";
         });
 
-        // Tap inside the LCD screen to walk toward tapped direction relative to center
         el.gbMapCanvas.addEventListener("click", (e) => {
           if (state.phase !== "map") return;
           ensureAudioContext();
@@ -2979,7 +3078,6 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           }
         });
 
-        // Keyboard controls (Arrows / WASD / Enter / Space)
         window.addEventListener("keydown", (e) => {
           if (state.phase !== "map") return;
           const keyMap = {
@@ -2999,14 +3097,14 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         });
       }
 
-      /* ---------- Phase 1: Microphone Blow Detection ---------- */
-      function updateBlowUI(progress) {
+      /* ---------- Phase 1: Calibrated Real Microphone Blow Detection ---------- */
+      function updateBlowUI(progress, flickerRatio = 0) {
         const clamped = Math.max(0, Math.min(100, Math.round(progress)));
         el.blowPercent.textContent = `${clamped}%`;
         el.blowMeterFill.style.width = `${clamped}%`;
-        const wobble = (clamped / 100) * 16;
-        const scaleY = Math.max(0.35, 1 - clamped / 155);
-        el.candleFlame.style.transform = `skewX(${wobble}deg) scaleY(${scaleY})`;
+        const wobble = Math.max((clamped / 100) * 16, flickerRatio * 14);
+        const scaleY = Math.max(0.35, 1 - clamped / 155 - flickerRatio * 0.12);
+        el.candleFlame.style.transform = `skewX(${wobble.toFixed(1)}deg) scaleY(${scaleY.toFixed(2)})`;
       }
 
       function extinguishCandle() {
@@ -3048,7 +3146,7 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
             audio: {
               echoCancellation: false,
               noiseSuppression: false,
-              autoGainControl: true
+              autoGainControl: false
             }
           });
 
@@ -3067,15 +3165,18 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           const source = ctx.createMediaStreamSource(stream);
           const analyser = ctx.createAnalyser();
           analyser.fftSize = 1024;
-          analyser.smoothingTimeConstant = 0.65;
+          analyser.smoothingTimeConstant = 0.55;
           source.connect(analyser);
 
           const timeData = new Uint8Array(analyser.fftSize);
           const freqData = new Uint8Array(analyser.frequencyBinCount);
-          let ambientFloor = 0.025;
-          let sampleCount = 0;
 
-          el.micStatusText.textContent = "¡Micrófono listo! Sopla hacia el teléfono 💨";
+          // Warm-up baseline calibration (~45 frames = ~0.75s) so ambient noise never auto-fills!
+          let calibFrames = 0;
+          const CALIB_NEEDED = 45;
+          let baseRms = 0;
+          let baseLow = 0;
+          el.micStatusText.textContent = "Calibrando sonido ambiente... (1 seg)";
 
           const analyzeLoop = () => {
             if (state.phase !== "mic" || state.candleExtinguished) return;
@@ -3090,25 +3191,43 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
             }
             const rms = Math.sqrt(sumSq / timeData.length);
 
-            let lowEnergy = 0;
-            for (let i = 1; i < 22; i++) lowEnergy += freqData[i];
-            lowEnergy = lowEnergy / (21 * 255);
+            // Low-band wind turbulence energy (bins 1..16 ~45Hz..700Hz)
+            let lowSum = 0;
+            for (let i = 1; i <= 16; i++) lowSum += freqData[i];
+            const lowBand = lowSum / (16 * 255);
 
-            if (sampleCount < 20) {
-              ambientFloor = Math.max(0.02, ambientFloor * 0.8 + rms * 0.2);
-              sampleCount++;
+            if (calibFrames < CALIB_NEEDED) {
+              // Discard very first 10 frames (mic hardware turn-on pop)
+              if (calibFrames >= 10) {
+                baseRms = Math.max(baseRms, rms);
+                baseLow = Math.max(baseLow, lowBand);
+              }
+              calibFrames++;
+              if (calibFrames === CALIB_NEEDED) {
+                baseRms = Math.min(0.18, Math.max(0.015, baseRms));
+                baseLow = Math.min(0.55, Math.max(0.08, baseLow));
+                el.micStatusText.textContent = "¡Listo! Acerca tu boca al micro y SOPLA fuerte 💨";
+              }
+              state.micRafId = requestAnimationFrame(analyzeLoop);
+              return;
             }
 
-            const blowStrength = rms * 0.65 + lowEnergy * 0.5;
-            const threshold = Math.max(0.085, ambientFloor * 1.9);
+            const rmsExcess = rms - baseRms;
+            const lowExcess = lowBand - baseLow;
 
-            if (blowStrength > threshold) {
-              state.blowProgress = Math.min(100, state.blowProgress + 4.4);
+            // Require genuine air burst above calibrated ambient baseline
+            const isBlowing =
+              (rms > Math.max(0.068, baseRms * 2.1) && rmsExcess > 0.036 && lowExcess > 0.07) ||
+              (rms > Math.max(0.16, baseRms * 1.85) && rmsExcess > 0.06);
+
+            if (isBlowing) {
+              state.blowProgress = Math.min(100, state.blowProgress + 2.2);
             } else {
-              state.blowProgress = Math.max(0, state.blowProgress - 1.1);
+              state.blowProgress = Math.max(0, state.blowProgress - 2.4);
             }
 
-            updateBlowUI(state.blowProgress);
+            const flickerRatio = Math.min(1, Math.max(0, rmsExcess * 6));
+            updateBlowUI(state.blowProgress, flickerRatio);
 
             if (state.blowProgress >= 100) {
               extinguishCandle();
@@ -3124,7 +3243,7 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         }
       }
 
-      /* ---------- Phase 2: Modo Doodler (1 Phrase Per Drawing Stroke) ---------- */
+      /* ---------- Phase 2: Modo Doodler (Big Canvas + 1 Phrase Per Drawing) ---------- */
       function buildDoodleIconSvg(kind) {
         const NS = "http://www.w3.org/2000/svg";
         const svg = document.createElementNS(NS, "svg");
@@ -3179,11 +3298,57 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         return svg;
       }
 
+      function renderDoodleSpotlight(idx) {
+        if (idx < 0 || idx >= state.doodleUnlockedCount) {
+          el.doodleSpotlightBox.textContent = "";
+          const empty = document.createElement("div");
+          empty.className = "doodle-bubble-empty";
+          empty.textContent = "Cada dibujito nuevo desbloqueará un mensaje kawaii... 🍑💖";
+          el.doodleSpotlightBox.appendChild(empty);
+          return;
+        }
+        state.doodleActivePhraseIdx = idx;
+        const item = DOODLE_PHRASES[idx];
+        el.doodleSpotlightBox.textContent = "";
+
+        const bubble = document.createElement("div");
+        bubble.className = "doodle-bubble";
+        const iconSvg = buildDoodleIconSvg(item.icon);
+        const span = document.createElement("span");
+        span.textContent = item.text;
+        bubble.append(iconSvg, span);
+        el.doodleSpotlightBox.appendChild(bubble);
+        updateDoodleProgressUI();
+      }
+
+      function renderPhrasePips() {
+        el.phrasePips.textContent = "";
+        for (let i = 0; i < DOODLE_PHRASES.length; i++) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "phrase-pip";
+          btn.textContent = String(i + 1);
+          const unlocked = i < state.doodleUnlockedCount;
+          if (unlocked) {
+            btn.classList.add("unlocked");
+            if (i === state.doodleActivePhraseIdx) btn.classList.add("current");
+            btn.setAttribute("aria-label", `Ver mensaje ${i + 1}`);
+            btn.addEventListener("click", () => {
+              sfx.tap();
+              renderDoodleSpotlight(i);
+            });
+          } else {
+            btn.disabled = true;
+          }
+          el.phrasePips.appendChild(btn);
+        }
+      }
+
       function clearDoodleCanvas(keepPhrases = true) {
         const canvas = el.doodleCanvas;
         const rect = canvas.getBoundingClientRect();
         const w = Math.max(260, Math.round(rect.width || 330));
-        const h = Math.max(140, Math.round(rect.height || 186));
+        const h = Math.max(220, Math.round(rect.height || 290));
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
         canvas.width = Math.round(w * dpr);
@@ -3200,12 +3365,9 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
 
         if (!keepPhrases) {
           state.doodleUnlockedCount = 0;
+          state.doodleActivePhraseIdx = -1;
           state.doodleDataUrl = null;
-          el.doodleBubblesTray.textContent = "";
-          const empty = document.createElement("div");
-          empty.className = "doodle-bubble-empty";
-          empty.textContent = "Cada dibujito nuevo desbloqueará un mensaje kawaii... 🍑💖";
-          el.doodleBubblesTray.appendChild(empty);
+          renderDoodleSpotlight(-1);
         }
         updateDoodleProgressUI();
       }
@@ -3213,7 +3375,8 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
       function updateDoodleProgressUI() {
         const count = state.doodleUnlockedCount;
         const total = DOODLE_PHRASES.length;
-        el.doodleUnlockCount.textContent = `${count} / ${total} (mín. 3)`;
+        el.doodleUnlockCount.textContent = `💬 Mensajes: ${count} / ${total} (mín. 3)`;
+        renderPhrasePips();
 
         const canContinue = count >= 3 && state.doodleHasInk;
         el.doodleContinueBtn.disabled = !canContinue;
@@ -3225,25 +3388,10 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
 
       function unlockNextDoodlePhrase() {
         if (state.doodleUnlockedCount >= DOODLE_PHRASES.length) return;
-
-        if (state.doodleUnlockedCount === 0) {
-          el.doodleBubblesTray.textContent = "";
-        }
-
-        const item = DOODLE_PHRASES[state.doodleUnlockedCount];
+        const nextIdx = state.doodleUnlockedCount;
         state.doodleUnlockedCount++;
-
-        const bubble = document.createElement("div");
-        bubble.className = "doodle-bubble";
-        const iconSvg = buildDoodleIconSvg(item.icon);
-        const span = document.createElement("span");
-        span.textContent = item.text;
-        bubble.append(iconSvg, span);
-
-        el.doodleBubblesTray.prepend(bubble);
-        el.doodleBubblesTray.scrollTop = 0;
         sfx.popPhrase();
-        updateDoodleProgressUI();
+        renderDoodleSpotlight(nextIdx);
       }
 
       function getDoodleCoords(clientX, clientY) {
@@ -3542,20 +3690,30 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           card.style.setProperty("--ry", "0deg");
         };
 
-        card.addEventListener("pointermove", (e) => {
-          const rect = card.getBoundingClientRect();
-          const px = (e.clientX - rect.left) / rect.width;
-          const py = (e.clientY - rect.top) / rect.height;
-          const ry = (px - 0.5) * 14;
-          const rx = (0.5 - py) * 12;
+        const applyTilt = (px, py) => {
+          const ry = (px - 0.5) * 16;
+          const rx = (0.5 - py) * 14;
           card.style.setProperty("--rx", `${rx.toFixed(2)}deg`);
           card.style.setProperty("--ry", `${ry.toFixed(2)}deg`);
           card.style.setProperty("--holo-x", `${Math.round(px * 100)}%`);
           card.style.setProperty("--holo-y", `${Math.round(py * 100)}%`);
+        };
+
+        card.addEventListener("pointermove", (e) => {
+          const rect = card.getBoundingClientRect();
+          applyTilt((e.clientX - rect.left) / rect.width, (e.clientY - rect.top) / rect.height);
         });
 
         card.addEventListener("pointerleave", resetTilt);
         card.addEventListener("pointercancel", resetTilt);
+
+        // Passive gyro tilt for mobile phones when supported without prompt
+        window.addEventListener("deviceorientation", (e) => {
+          if (state.phase !== "reward" || e.gamma === null || e.beta === null) return;
+          const px = Math.max(0, Math.min(1, (e.gamma + 35) / 70));
+          const py = Math.max(0, Math.min(1, (e.beta - 15) / 60));
+          applyTilt(px, py);
+        });
       }
 
       function startRewardPhase() {
@@ -3569,7 +3727,7 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
         startConfetti();
       }
 
-      /* ---------- Export Trading Card as High-Res PNG ---------- */
+      /* ---------- Export Trading Card as High-Res Holographic PNG ---------- */
       function wrapTextLines(ctx, text, maxWidth) {
         const paragraphs = text.split("\n");
         const lines = [];
@@ -3611,6 +3769,23 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           img.onerror = reject;
           img.src = uri;
         });
+      }
+
+      function drawCanvasSparkle(ctx, x, y, size, color) {
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(x, y - size);
+        ctx.lineTo(x + size * 0.28, y - size * 0.28);
+        ctx.lineTo(x + size, y);
+        ctx.lineTo(x + size * 0.28, y + size * 0.28);
+        ctx.lineTo(x, y + size);
+        ctx.lineTo(x - size * 0.28, y + size * 0.28);
+        ctx.lineTo(x - size, y);
+        ctx.lineTo(x - size * 0.28, y - size * 0.28);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
       }
 
       async function exportCardPng() {
@@ -3778,6 +3953,24 @@ Perdóname por el gran despiste de hoy, no tengo excusa, pero quiero celebrarte 
           ctx.fillText(`ILUS. CON MUCHO AMOR • De: ${TU_APODO}`, 64, H - 48);
           ctx.textAlign = "right";
           ctx.fillText("18/11 ★ 2026", W - 64, H - 48);
+          ctx.textAlign = "left";
+
+          // Prismatic holographic foil sheen & sparkles across exported card
+          ctx.save();
+          roundRectPath(ctx, 26, 26, W - 52, H - 52, 34);
+          ctx.clip();
+          const holoGrad = ctx.createLinearGradient(0, 0, W, H);
+          holoGrad.addColorStop(0.05, "rgba(255, 255, 255, 0)");
+          holoGrad.addColorStop(0.28, "rgba(255, 92, 168, 0.14)");
+          holoGrad.addColorStop(0.45, "rgba(0, 240, 255, 0.18)");
+          holoGrad.addColorStop(0.58, "rgba(255, 212, 59, 0.14)");
+          holoGrad.addColorStop(0.75, "rgba(255, 255, 255, 0)");
+          ctx.fillStyle = holoGrad;
+          ctx.fillRect(0, 0, W, H);
+          drawCanvasSparkle(ctx, 88, 198, 12, "rgba(255, 255, 255, 0.7)");
+          drawCanvasSparkle(ctx, 804, 210, 14, "rgba(0, 240, 255, 0.75)");
+          drawCanvasSparkle(ctx, 790, H - 120, 11, "rgba(255, 212, 59, 0.75)");
+          ctx.restore();
 
           c.toBlob(async (blob) => {
             if (!blob) return;
